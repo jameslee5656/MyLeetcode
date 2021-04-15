@@ -24,12 +24,12 @@ public:
         return ans;
     }
 private:
-    vector<int> dfs(TreeNode * root, vector<int> list){
-        if (root == nullptr) {return;}
+    void dfs(TreeNode * root, vector<int>& list){
+        if (root == nullptr) return;
 
-        list = dfs(root->left,list);
-        list.push_back(root.val);
-        return dfs(root.right,list);
+        dfs(root->left,list);
+        list.push_back(root->val);
+        return dfs(root->right,list);
     }
-};// @lc code=end
-
+};
+// @lc code=end
