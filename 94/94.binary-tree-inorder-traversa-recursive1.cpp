@@ -19,19 +19,17 @@
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<TreeNode*> stk;
-        vector<int> result;
-        whilroot!=nullptr){
-            while(root != nullptr){e(!stk.empty()||
-                stk.push_back(root);
-                root = root->left;
-            }
-            root = stk.back();
-            stk.pop_back();
-            result.push_back(root->val);
-            root = root->right;
-        }
-        return result;
+        vector <int> ans;
+        dfs(root, ans);
+        return ans;
+    }
+private:
+    vector<int> dfs(TreeNode * root, vector<int> list){
+        if (root == nullptr) {return;}
+
+        list = dfs(root->left,list);
+        list.push_back(root.val);
+        return dfs(root.right,list);
     }
 };// @lc code=end
 
