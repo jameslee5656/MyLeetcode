@@ -1,15 +1,7 @@
 {
 	"folders": [
 		{
-			"name": "leetcode-code",
-			"path": "."
-		},
-		{
-			"name": "leetcode",
-			"path": ".."
-		},
-		{
-			"path": "Interview Problem"
+			"path": "c++Review"
 		}
 	],
 	"settings": {

@@ -26,14 +26,13 @@ class Card{
 void swapCard(vector<Card>&,int,int);
 bool IsRoyalFlush(vector<Card>);
 bool IsStraightFlush(vector<Card>);
-bool IsFourKind(vector<Card>,int);
-bool IsFullHouse(vector<Card>);
+bool IsFourKind(int);
+bool IsFullHouse(int,int);
 bool IsFlush    (vector<Card>);
 bool IsStraight (vector<Card>);
-bool IsThreeKind(vector<Card>);
-bool IsTwoPairs (vector<Card>);
-bool IsPair     (vector<Card>);
-bool IsHighcard (vector<Card>);
+bool IsThreeKind(int,int);
+bool IsTwoPairs (int,int);
+bool IsPair     (int,int);
 
 int f(const std::vector<int>& input)
 {
@@ -68,9 +67,13 @@ int f(const std::vector<int>& input)
     }
     // Calculate the Max value in umap
     int currentMax = 0;
+    int TwoPairsNum = 0;
     for(auto it = umap.cbegin(); it != umap.cend(); ++it){
         if (it ->second > currentMax) {
             currentMax = it->second;
+        }
+        if (it ->second == 2) {
+            TwoPairsNum+=1;
         }
     }
     cout << "Debug UMAP------------------" << endl;
@@ -79,16 +82,45 @@ int f(const std::vector<int>& input)
     }
     cout << "Debug UMAP------------------" << endl;
     // Each function test
-    if(IsRoyalFlush(VCard)) cout << "Input is Royal Flush" << endl;
-    if(IsStraightFlush(VCard)) cout << "Input is Straight Flush" << endl;
-    if(IsFourKind(VCard,currentMax)) cout << "Input is Four Kind Flush" << endl;
-    if(IsStraight(VCard)) cout << "Input is Straight" << endl;
-
-
-    for(int i = 0; i < VCard.size(); i++){
-        cout << VCard[i].num << endl;
+    if(IsRoyalFlush(VCard)){
+        cout << "Input is Royal Flush" << endl;
+        return RoyalFlush;
     }
-    return 1;
+    else if(IsStraightFlush(VCard)){
+        cout << "Input is Straight Flush" << endl;
+        return StraightFlush;
+    }
+    else if(IsFourKind(currentMax)) {
+        cout << "Input is Four Kind" << endl;
+        return FourKind;
+    }
+    else if(IsFullHouse(currentMax,TwoPairsNum)) {
+        cout << "Input is Full House" << endl;
+        return FullHouse;
+    }
+    else if(IsFlush(VCard)) {
+        cout << "Input is Flush" << endl;
+        return Flush;
+    }
+    else if(IsStraight(VCard)) {
+        cout << "Input is Straight" << endl;
+        return Straight;
+    }
+    else if(IsThreeKind(currentMax, TwoPairsNum)) {
+        cout << "Input is Three Kind" << endl;
+        return ThreeKind;
+    }
+    else if(IsTwoPairs(currentMax, TwoPairsNum)) {
+        cout << "Input is Two Pairs" << endl;
+        return TwoPairs;
+    }
+    else if(IsPair(currentMax, TwoPairsNum)) {
+        cout << "Input is Pairs" << endl;
+        return Pair;
+    }
+    else{
+        return Highcard;
+    }
     
 }
 int main(){
@@ -98,7 +130,7 @@ int main(){
     input.push_back(0x203); // Club(22) 3
     input.push_back(0x304); // Heart(23) 4
     input.push_back(0x40e); // Heart(24) 1    
-    f(input);
+    cout << f(input) << endl;
 
     vector<int> input2; // Straight 10.J,Q,K,A
     input2.push_back(0x40e); // Spade(24) 1    
@@ -132,6 +164,53 @@ int main(){
     input5.push_back(0x30a); // Hearts(23) 		10
     f(input5);
 
+    vector<int> input6; // Full House
+    input6.push_back(0x10d); // Diamonds(21) 	K    
+    input6.push_back(0x30d); // Hearts(23) 		K
+    input6.push_back(0x20d); // Clubs(22) 		K
+    input6.push_back(0x403); // Spades(24) 		3
+    input6.push_back(0x303); // Hearts(23) 		3
+    f(input6);
+
+    vector<int> input7; // Flush
+    input7.push_back(0x40a); // Spades(24)		10
+    input7.push_back(0x40d); // Spades(24)		K
+    input7.push_back(0x40b); // Spades(24)		J
+    input7.push_back(0x403); // Spades(24) 		3
+    input7.push_back(0x407); // Spades(24) 		7
+    f(input7);
+
+    vector<int> input8; // Three Kind
+    input8.push_back(0x40a); // Spades(24)		10
+    input8.push_back(0x30a); // Hearts(23)		10
+    input8.push_back(0x20a); // Clubs(22)		10
+    input8.push_back(0x403); // Spades(24) 		3
+    input8.push_back(0x407); // Spades(24) 		7
+    f(input8);
+
+    vector<int> input9; // Two Pairs
+    input9.push_back(0x40a); // Spades(24)		10
+    input9.push_back(0x30a); // Hearts(23)		10
+    input9.push_back(0x203); // Clubs(22)		3
+    input9.push_back(0x403); // Spades(24) 		3
+    input9.push_back(0x407); // Spades(24) 		7
+    f(input9);
+
+    vector<int> input10; // Pair
+    input10.push_back(0x40a); // Spades(24)		10
+    input10.push_back(0x30a); // Hearts(23)		10
+    input10.push_back(0x204); // Clubs(22)		4
+    input10.push_back(0x403); // Spades(24) 		3
+    input10.push_back(0x407); // Spades(24) 		7
+    f(input10);
+
+    vector<int> input11; // High Card
+    input11.push_back(0x409); // Spades(24)		9
+    input11.push_back(0x30a); // Hearts(23)		10
+    input11.push_back(0x204); // Clubs(22)		4
+    input11.push_back(0x403); // Spades(24) 	3
+    input11.push_back(0x407); // Spades(24) 	7
+    cout << f(input11) << endl;
     // int t1 = 0x102;
     // for(int i = 0; i < 13; i++){
     //     cout << i << ": " << (t1 + i) / 0x100 << endl;
@@ -200,14 +279,29 @@ bool IsStraight(vector<Card> VCard){
     if(delta == 4) return true;
     else return false;
 }
-bool IsFourKind(vector<Card> VCard,int currentMax){
+bool IsFourKind(int currentMax){
     if(currentMax == 4) return 1;
     else return 0;
 }
-bool IsFullHouse(vector<Card>);
-bool IsFlush    (vector<Card>);
-bool IsStraight (vector<Card>);
-bool IsThreeKind(vector<Card>);
-bool IsTwoPairs (vector<Card>);
-bool IsPair     (vector<Card>);
-bool IsHighcard (vector<Card>);
+bool IsFullHouse(int currentMax, int TwoPairsNum){
+    // cout << "currentMax: " << currentMax << " TwoPairsNum:" << TwoPairsNum << endl;
+    if(currentMax == 3 && TwoPairsNum == 1) return 1;
+    else return 0;
+}
+bool IsFlush    (vector<Card> VCard){
+    int CheckSuit = VCard[0].suit;
+    for(int i = 1; i < VCard.size(); i++) if(CheckSuit != VCard[i].suit) return 0;
+    return 1;
+}
+bool IsThreeKind(int currentMax, int TwoPairsNum){
+    if(currentMax == 3 && TwoPairsNum == 0) return 1;
+    else return 0;
+}
+bool IsTwoPairs (int currentMax, int TwoPairsNum){
+    if(currentMax == 2 && TwoPairsNum == 2) return 1;
+    else return 0;
+}
+bool IsPair     (int currentMax, int TwoPairsNum){
+    if(currentMax == 2 && TwoPairsNum == 1) return 1;
+    else return 0;
+}
