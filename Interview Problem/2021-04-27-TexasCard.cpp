@@ -22,6 +22,10 @@ class Card{
     public:
         int num;
         int suit;
+        Card(){
+            num = 1;
+            suit = Diamonds;
+        }
 };
 void swapCard(vector<Card>&,int,int);
 bool IsRoyalFlush(vector<Card>);
@@ -61,10 +65,12 @@ int f(const std::vector<int>& input)
     }
     unordered_map<int,int> umap;
     for(int i = 0; i < VCard.size(); i++){
-        if(umap.find(VCard[i].num) != umap.end()){
-            umap[VCard[i].num] += 1;
-        }else umap[VCard[i].num] = 1;
+        // if(umap.find(VCard[i].num) != umap.end()){
+        //     umap[VCard[i].num] += 1;
+        // }else umap[VCard[i].num] = 1;
+        umap[VCard[i].num] += 1;
     }
+    
     // Calculate the Max value in umap
     int currentMax = 0;
     int TwoPairsNum = 0;
@@ -75,6 +81,9 @@ int f(const std::vector<int>& input)
         if (it ->second == 2) {
             TwoPairsNum+=1;
         }
+    }
+    for(int i = 0; i < VCard.size(); i++){
+        cout << VCard[i].num << endl;
     }
     cout << "Debug UMAP------------------" << endl;
     for (auto const &pair: umap) {
@@ -132,85 +141,85 @@ int main(){
     input.push_back(0x40e); // Heart(24) 1    
     cout << f(input) << endl;
 
-    vector<int> input2; // Straight 10.J,Q,K,A
-    input2.push_back(0x40e); // Spade(24) 1    
-    input2.push_back(0x40d); // Spade(24) 13 K
-    input2.push_back(0x20b); // Club(22) J
-    input2.push_back(0x40c); // Spade(24) 12 Q
-    input2.push_back(0x30a); // Heart(23) 10
-    f(input2);
+    // vector<int> input2; // Straight 10.J,Q,K,A
+    // input2.push_back(0x40e); // Spade(24) 1    
+    // input2.push_back(0x40d); // Spade(24) 13 K
+    // input2.push_back(0x20b); // Club(22) J
+    // input2.push_back(0x40c); // Spade(24) 12 Q
+    // input2.push_back(0x30a); // Heart(23) 10
+    // f(input2);
 
-    vector<int> input3; // StraightFlush 2,3,4,5,6
-    input3.push_back(0x402); // Spade(24) 2    
-    input3.push_back(0x406); // Spade(24) 6
-    input3.push_back(0x403); // Spade(24) 3
-    input3.push_back(0x404); // Spade(24) 4
-    input3.push_back(0x405); // Spade(24) 5
-    f(input3);
+    // vector<int> input3; // StraightFlush 2,3,4,5,6
+    // input3.push_back(0x402); // Spade(24) 2    
+    // input3.push_back(0x406); // Spade(24) 6
+    // input3.push_back(0x403); // Spade(24) 3
+    // input3.push_back(0x404); // Spade(24) 4
+    // input3.push_back(0x405); // Spade(24) 5
+    // f(input3);
 
-    vector<int> input4; // RoyalFlush 10,J,Q,K,A
-    input4.push_back(0x30b); // Hearts(23) J    
-    input4.push_back(0x30c); // Hearts(23) Q
-    input4.push_back(0x30d); // Hearts(23) K
-    input4.push_back(0x30e); // Hearts(23) A
-    input4.push_back(0x30a); // Hearts(23) 10
-    f(input4);
+    // vector<int> input4; // RoyalFlush 10,J,Q,K,A
+    // input4.push_back(0x30b); // Hearts(23) J    
+    // input4.push_back(0x30c); // Hearts(23) Q
+    // input4.push_back(0x30d); // Hearts(23) K
+    // input4.push_back(0x30e); // Hearts(23) A
+    // input4.push_back(0x30a); // Hearts(23) 10
+    // f(input4);
 
-    vector<int> input5; // Four Kind
-    input5.push_back(0x105); // Diamonds(21) 	5    
-    input5.push_back(0x305); // Hearts(23) 		5
-    input5.push_back(0x205); // Clubs(22) 		5
-    input5.push_back(0x405); // Spades(24) 		5
-    input5.push_back(0x30a); // Hearts(23) 		10
-    f(input5);
+    // vector<int> input5; // Four Kind
+    // input5.push_back(0x105); // Diamonds(21) 	5    
+    // input5.push_back(0x305); // Hearts(23) 		5
+    // input5.push_back(0x205); // Clubs(22) 		5
+    // input5.push_back(0x405); // Spades(24) 		5
+    // input5.push_back(0x30a); // Hearts(23) 		10
+    // f(input5);
 
-    vector<int> input6; // Full House
-    input6.push_back(0x10d); // Diamonds(21) 	K    
-    input6.push_back(0x30d); // Hearts(23) 		K
-    input6.push_back(0x20d); // Clubs(22) 		K
-    input6.push_back(0x403); // Spades(24) 		3
-    input6.push_back(0x303); // Hearts(23) 		3
-    f(input6);
+    // vector<int> input6; // Full House
+    // input6.push_back(0x10d); // Diamonds(21) 	K    
+    // input6.push_back(0x30d); // Hearts(23) 		K
+    // input6.push_back(0x20d); // Clubs(22) 		K
+    // input6.push_back(0x403); // Spades(24) 		3
+    // input6.push_back(0x303); // Hearts(23) 		3
+    // f(input6);
 
-    vector<int> input7; // Flush
-    input7.push_back(0x40a); // Spades(24)		10
-    input7.push_back(0x40d); // Spades(24)		K
-    input7.push_back(0x40b); // Spades(24)		J
-    input7.push_back(0x403); // Spades(24) 		3
-    input7.push_back(0x407); // Spades(24) 		7
-    f(input7);
+    // vector<int> input7; // Flush
+    // input7.push_back(0x40a); // Spades(24)		10
+    // input7.push_back(0x40d); // Spades(24)		K
+    // input7.push_back(0x40b); // Spades(24)		J
+    // input7.push_back(0x403); // Spades(24) 		3
+    // input7.push_back(0x407); // Spades(24) 		7
+    // f(input7);
 
-    vector<int> input8; // Three Kind
-    input8.push_back(0x40a); // Spades(24)		10
-    input8.push_back(0x30a); // Hearts(23)		10
-    input8.push_back(0x20a); // Clubs(22)		10
-    input8.push_back(0x403); // Spades(24) 		3
-    input8.push_back(0x407); // Spades(24) 		7
-    f(input8);
+    // vector<int> input8; // Three Kind
+    // input8.push_back(0x40a); // Spades(24)		10
+    // input8.push_back(0x30a); // Hearts(23)		10
+    // input8.push_back(0x20a); // Clubs(22)		10
+    // input8.push_back(0x403); // Spades(24) 		3
+    // input8.push_back(0x407); // Spades(24) 		7
+    // f(input8);
 
-    vector<int> input9; // Two Pairs
-    input9.push_back(0x40a); // Spades(24)		10
-    input9.push_back(0x30a); // Hearts(23)		10
-    input9.push_back(0x203); // Clubs(22)		3
-    input9.push_back(0x403); // Spades(24) 		3
-    input9.push_back(0x407); // Spades(24) 		7
-    f(input9);
+    // vector<int> input9; // Two Pairs
+    // input9.push_back(0x40a); // Spades(24)		10
+    // input9.push_back(0x30a); // Hearts(23)		10
+    // input9.push_back(0x203); // Clubs(22)		3
+    // input9.push_back(0x403); // Spades(24) 		3
+    // input9.push_back(0x407); // Spades(24) 		7
+    // f(input9);
 
-    vector<int> input10; // Pair
-    input10.push_back(0x40a); // Spades(24)		10
-    input10.push_back(0x30a); // Hearts(23)		10
-    input10.push_back(0x204); // Clubs(22)		4
-    input10.push_back(0x403); // Spades(24) 		3
-    input10.push_back(0x407); // Spades(24) 		7
-    f(input10);
+    // vector<int> input10; // Pair
+    // input10.push_back(0x40a); // Spades(24)		10
+    // input10.push_back(0x30a); // Hearts(23)		10
+    // input10.push_back(0x204); // Clubs(22)		4
+    // input10.push_back(0x403); // Spades(24) 		3
+    // input10.push_back(0x407); // Spades(24) 		7
+    // f(input10);
 
-    vector<int> input11; // High Card
-    input11.push_back(0x409); // Spades(24)		9
-    input11.push_back(0x30a); // Hearts(23)		10
-    input11.push_back(0x204); // Clubs(22)		4
-    input11.push_back(0x403); // Spades(24) 	3
-    input11.push_back(0x407); // Spades(24) 	7
-    cout << f(input11) << endl;
+    // vector<int> input11; // High Card
+    // input11.push_back(0x409); // Spades(24)		9
+    // input11.push_back(0x30a); // Hearts(23)		10
+    // input11.push_back(0x204); // Clubs(22)		4
+    // input11.push_back(0x403); // Spades(24) 	3
+    // input11.push_back(0x407); // Spades(24) 	7
+    // cout << f(input11) << endl;
     // int t1 = 0x102;
     // for(int i = 0; i < 13; i++){
     //     cout << i << ": " << (t1 + i) / 0x100 << endl;
@@ -263,7 +272,9 @@ bool IsStraight(vector<Card> VCard){
     bool KFlag = 0;
     bool AFlag = 0;
     for(int i = 0; i < VCard.size() - 1; i++){
-        delta += VCard[i+1].num - VCard[i].num;
+        if(VCard[i+1].num - VCard[i].num == 1){
+            delta += 1;
+        }else return false;
         if(VCard[i].num == 1) AFlag = 1;
         if(VCard[i+1].num == 13) KFlag = 1;                                                                                                                                 
     }

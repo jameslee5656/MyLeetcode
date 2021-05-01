@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "c++Review"
+		},
+		{
+			"path": "."
 		}
 	],
 	"settings": {
