@@ -36,7 +36,7 @@ int main(){
 
     // Early binding but this function call is illegal(produces error) becasue pointer
     // is of base type and function is of derived class
-    p->fun_4(5);
+    // p->fun_4(5);
 
 
     /*Result:
