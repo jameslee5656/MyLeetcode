@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "problemNumber"
+		},
+		{
+			"path": "Interview Problem"
 		}
 	],
 	"settings": {
@@ -58,7 +61,21 @@
 			"sstream": "cpp",
 			"stdexcept": "cpp",
 			"streambuf": "cpp",
-			"typeinfo": "cpp"
+			"typeinfo": "cpp",
+			"__hash_table": "cpp",
+			"__tree": "cpp",
+			"forward_list": "cpp",
+			"list": "cpp",
+			"map": "cpp",
+			"set": "cpp",
+			"unordered_set": "cpp",
+			"__split_buffer": "cpp",
+			"bitset": "cpp",
+			"queue": "cpp",
+			"regex": "cpp",
+			"span": "cpp",
+			"stack": "cpp",
+			"valarray": "cpp"
 		}
 	}
 }
