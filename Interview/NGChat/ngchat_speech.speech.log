@@ -1,0 +1,6 @@
+2021-05-17 19:17:36.357 ngchat_speech.speech ERROR Login error: 400 for account_id: test
+2021-05-17 19:17:36.357 ngchat_speech.speech ERROR Failed to login API server for test, please make sure account_id and password are right.
+2021-05-17 19:47:46.101 ngchat_speech.speech ERROR Login error: 400 for account_id: 3d
+2021-05-17 19:47:46.104 ngchat_speech.speech ERROR Failed to login API server for 3d, please make sure account_id and password are right.
+2021-05-17 19:48:07.177 ngchat_speech.speech ERROR Login error: 400 for account_id: 3d
+2021-05-17 19:48:07.177 ngchat_speech.speech ERROR Failed to login API server for 3d, please make sure account_id and password are right.
