@@ -15,7 +15,6 @@ public:
         for(char digit: digits){
             vector<string> tmp;
             for(string result: results){
-                cout << result << endl;
                 for(char phone: phones[digit - '0' - 2]){
                     tmp.push_back(result + phone);
                 }
