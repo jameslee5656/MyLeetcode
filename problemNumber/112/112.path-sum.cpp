@@ -25,8 +25,6 @@ public:
         // cout << (root==nullptr) << endl;
         if(root==nullptr){
             return false;
-            if(targetSum == 0){return true;}
-            else {return false;}
         }
         // cout << root->left->val << endl;
         // vector<int> vec;
@@ -42,14 +40,6 @@ public:
     }
     void dfs(TreeNode* curr,int targetSum,int layer){
         if(curr==NULL){
-            // cout << "curr is Null Sum: " << sum << endl;
-            // cout << "current layer: " << layer << endl;
-            // cout << *curr << endl;
-            // cout << *root << endl;
-            // cout << (curr->val == root->val) << endl;
-            // if(sum == targetSum && layer > 1){
-            //     targetFlag = true;
-            // }
             return;
         }
         if(curr->left == NULL && curr->right==NULL){
