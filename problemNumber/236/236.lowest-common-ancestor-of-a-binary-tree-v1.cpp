@@ -35,16 +35,16 @@ public:
             rightT = NULL; 
         }
         
-        if(leftT == NULL){
-            cout << "Left is None ";
-        }else {
-            cout << "Left is " << leftT->val;
-        }
-        if(rightT == NULL){
-            cout << " Right is None ";
-        }else {
-            cout << " Right is " << rightT->val;
-        }cout << endl;
+        // if(leftT == NULL){
+        //     cout << "Left is None ";
+        // }else {
+        //     cout << "Left is " << leftT->val;
+        // }
+        // if(rightT == NULL){
+        //     cout << " Right is None ";
+        // }else {
+        //     cout << " Right is " << rightT->val;
+        // }cout << endl;
 
         if(((leftT == p)&&(rightT == q))||((rightT == p)&&(leftT == q))){
             return root;
