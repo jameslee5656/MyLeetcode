@@ -16,7 +16,11 @@
 			"path": "FunctionDemmo"
 		},
 		{
-			"path": "../FST_CodeProject"
+			"path": "../../2021/FST_CodeProject"
+		},
+		{
+			"name": "problemNumber",
+			"path": "../../../leetcode/leetcode-code/problemNumber"
 		}
 	],
 	"settings": {
