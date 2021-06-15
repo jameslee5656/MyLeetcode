@@ -12,7 +12,6 @@ public:
         return num;
     }
     int DFS_find(vector<int>& nums, int target, int start, int end){
-        cout << "Debug: " << start << " " << end << endl;
         if(start >= end){
             if(nums[start] == target) return start;
             else return -1;
